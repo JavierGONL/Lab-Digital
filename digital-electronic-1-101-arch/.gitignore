@@ -1,0 +1,69 @@
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+*~
+.#*
+\.directory
+.vscode/
+.idea/
+
+# Entornos y cachés de desarrollo
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Herramientas y paquetes descargados localmente
+downloads/
+dist/
+build/
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.rar
+*.7z
+*.deb
+*.AppImage
+*.jar
+
+# Resultados generados por flujos HDL y simuladores
+*.vcd
+*.fst
+*.ghw
+*.lxt*
+*.wlf
+*.ucdb
+*.bit
+*.bin
+*.hex
+*.mem
+*.rpt
+*.log
+*.lst
+*.sby
+*.json.gz
+
+# Salidas comunes de síntesis, implementación y programación FPGA
+*.asc
+*.config
+*.timing
+*.place
+*.route
+*.xcf
+*.jed
+*.svf
+
+# Archivos locales de configuración y secretos
+.env
+.env.*
+!.env.example
