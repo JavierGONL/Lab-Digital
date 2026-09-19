@@ -309,7 +309,7 @@ command -v litex_sim
 command -v litex_server
 command -v litex_term
 command -v litex_cli
-command -v riscv64-unknown-elf-gcc
+command -v riscv64-elf-gcc
 command -v dot
 command -v ngspice
 command -v picocom

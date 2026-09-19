@@ -439,6 +439,12 @@ replace_once(
 )
 replace_once(
     p,
+    "command -v riscv64-unknown-elf-gcc",
+    "command -v riscv64-elf-gcc",
+    "README.md: comprobar riscv64 toolchain",
+)
+replace_once(
+    p,
     '''El comando `digital-logic-design debian-dependencias` instala PulseView y el
 firmware `sigrok-firmware-fx2lafw` para analizadores basados en Cypress FX2,
 incluidos los clones de 8 y 16 canales. El paquete libsigrok de Debian instala
