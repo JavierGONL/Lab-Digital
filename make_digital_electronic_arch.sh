@@ -17,6 +17,14 @@ if ! command -v rar >/dev/null 2>&1; then
         echo "Instala yay primero y vuelve a ejecutar este script." >&2
         exit 1
     }
+    # El paquete rar (AUR) provee/reemplaza a unrar y entra en conflicto con
+    # él. pacman --noconfirm NO quita paquetes en conflicto por defecto
+    # (asume "No" en ese prompt), así que si unrar está instalado hay que
+    # quitarlo primero o la instalación de rar falla.
+    if pacman -Qi unrar >/dev/null 2>&1; then
+        echo "'rar' (AUR) reemplaza a 'unrar'; quitando 'unrar' primero..."
+        sudo pacman -R --noconfirm unrar
+    fi
     yay -S --needed --noconfirm rar
 fi
 
@@ -230,6 +238,87 @@ replace_once(
     "| `apt remove paquete` | Desinstala un paquete |",
     "| `pacman -R paquete` | Desinstala un paquete |",
     "how-install-linux.md: table remove",
+)
+
+replace_once(
+    p,
+    '''        * [Instalación de Linux mint](#instalación-de-linux-mint)
+            * [Ejemplos de instalación de Linux mint](#ejemplos-de-instalación-de-linux-mint)''',
+    '''        * [Instalación de EndeavourOS](#instalación-de-endeavouros)''',
+    "how-install-linux.md: TOC",
+)
+replace_once(
+    p,
+    '''Para un usuario principiante se recomienda el uso de distribuciones como [Linux
+mint](https://www.linuxmint.com/download.php) la cual facilita la instalación
+de Linux y tiene diferentes mecanismos para que el usuario se sienta cómodo a
+la hora de aprender del sistema operativo. Puede conocer otras versiones Linux
+y sus características visitando [Distrowatch.com](https://distrowatch.com/),
+también podría llenar un cuestionario en
+[Distrochooser](https://distrochooser.de/es) el cual le puede sugerir una
+distribución Linux a la medida.''',
+    '''Esta guía está adaptada para **Arch Linux**, por lo que se recomienda el uso de
+[EndeavourOS](https://endeavouros.com/), una distribución basada en Arch que
+facilita su instalación y trae preconfigurado un entorno de escritorio (Xfce
+por defecto, con KDE Plasma, GNOME, Cinnamon y otros disponibles), sin perder
+acceso directo a `pacman` y al AUR. Puede conocer otras versiones Linux y sus
+características visitando [Distrowatch.com](https://distrowatch.com/),
+también podría llenar un cuestionario en
+[Distrochooser](https://distrochooser.de/es) el cual le puede sugerir una
+distribución Linux a la medida.''',
+    "how-install-linux.md: recomendación de distro",
+)
+replace_once(
+    p,
+    '''### Instalación de Linux mint
+
+Aunque se puede instalar cualquier otra distribución, en esta guía se ha recomendado la instalación
+de Linux mint para principiantes.
+
+1. Visite el enlace de descarga de [Linux Mint download](https://www.linuxmint.com/download.php) y seleccione
+el escritorio (cinnamon, xfce, mate) según sus recursos de hardware y gusto.
+
+**Requerimientos mínimos**
+
+* Cinnamon: dual-core CPU and 4GB of RAM
+* Mate: dual-core CPU and 4GB of RAM (fluído)
+* xfc: dual-core and 2GB of RAM (fluído)
+
+#### Ejemplos de instalación de Linux mint
+
+Los estudiantes del curso de electrónica digital han compartidos sus experiencias y recomendaciones de instalación
+de GNU/Linux y demás herramientas para electrónica digital:
+
+* [Instalación de Linux Mint como único sistema en el PC](https://github.com/mricol/ED1G5E3/tree/main/Informe1)
+* [Instalación de Linux Mint en dual boot](https://github.com/2023-2S-digital/laboratorio-I)
+* [Instalación de Linux Mint en dual boot](https://github.com/Juanpalo123/Digital_Informe_1)
+* [Instalación de Linux Mint en máquina virtual, equipo DavidN110](https://github.com/DavidN110/Laboratorio-Electronica-Digital-I-Grupo2/blob/main/Informe1/Informe%201%20'Instalaci%C3%B3n%20linux%20y%20herramientas%20de%20digital'.md)
+* [Instalación de Linux Mint en virtualbox](https://github.com/JulianQunal/Digital-I/blob/main/Pr%C3%A1cticas/Pr%C3%A1ctica%201/Instalaci%C3%B3n%20de%20Herramientas.md)
+* [Instlación de Linux Mint en máquina virtual](https://github.com/LuisVaca1503/Lab_DIgital_1/blob/main/Practica_1/Informe_1.md)
+* [Instalación de herramientas en miniconda](https://github.com/Daniel-Porras/Digital-1-2023-2/tree/main/Pr%C3%A1ctica%20No%201)
+* [Instación de herramientas conda](https://github.com/xXNarstickXx/E-Digital-I-2023-2-G3M-G6L-EQ1/tree/aedac264f40923c5ae5b405f492fac74afd4714f/Laboratorio%201)
+''',
+    '''### Instalación de EndeavourOS
+
+Aunque se puede instalar cualquier otra distribución basada en Arch, en esta guía se ha recomendado la instalación
+de EndeavourOS para principiantes.
+
+1. Visite el enlace de descarga de [EndeavourOS download](https://endeavouros.com/latest-release/) y seleccione
+el escritorio (Xfce, KDE Plasma, GNOME, Cinnamon, entre otros) según sus recursos de hardware y gusto.
+
+**Requerimientos mínimos**
+
+* CPU x86_64 de 64 bits
+* 2GB de RAM (4GB recomendado)
+* 15GB de espacio en disco
+''',
+    "how-install-linux.md: sección de instalación",
+)
+replace_once(
+    p,
+    'en el caso de las Distribuciones basadas en "Debian" los paquetes son de extensión **.deb**.',
+    'en el caso de Arch Linux los paquetes son de extensión **.pkg.tar.zst**.',
+    "how-install-linux.md: formato de paquete",
 )
 
 # ---------------------------------------------------------------------------
